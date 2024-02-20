@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Todo App</title>
 </head>
 <body>
+    <header class="header" id="header">
+      <div class="home">
+        <h1 class="welcome-text">Welcome to DO</h1>
+        <p class="hero-text">Manage your tasks effectively with our simple and intuitive DO web.</p>
+      </div>
+
+      <div class="todo">
+        <div class="add">
+          <input type="text" id="todo-input" placeholder="Enter your task..">
+          <button id="todobtn">ADD</button>
+        </div>
+    
+        <div class="list">
+        <div id="todo-list">
+            <label>Todo List: </label>
+        </div>
+        <p id="todo-counter">Total Todos: </p>
+        </div>
+      </div>
+    </header>
+    
+    <!-- javascript --> 
+      <script src="index.js"></script>
     
 </body>
 </html>
