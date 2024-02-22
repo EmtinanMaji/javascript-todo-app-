@@ -22,6 +22,8 @@
     
 }
 .todo{
+    padding: 1rem;
+    background-color: #E8C4C4;
     margin-top: 6rem ;
     margin-right: 18rem;
     position: relative;
@@ -29,28 +31,30 @@
     display: flex;
     justify-content: center;
     align-items:center; 
+    border-radius: 0.7rem;
 }
 
-#todo-input{
+#search-input, #todo-input{
+    margin: 0.5rem ;
     height: 2rem;
     width: 15rem;
     border-radius: 0.7rem;
-    background: none;
+    background:none;
 }
-#todobtn{
+button{
     height: 2rem;
-    width: 5rem;
+    width: 3.5rem;
     background-color: #E8C4C4;
     color: black;
     border-color: black;
     border-radius: 0.7rem;
 }
 .list{
-    background-color: #E8C4C4;
+    background-color:whitesmoke;
     width: 22rem;
     height: 27rem;
-    margin: 2rem 0;
-    padding: 2rem;
+    margin: 1rem ;
+    padding: 1rem;
     border-radius: 0.7rem;
 }
 

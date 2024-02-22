@@ -15,16 +15,21 @@
       </div>
 
       <div class="todo">
+        <div>
+          <input type="text" id="search-input" placeholder="Search task..">
+          <button id="searchbtn" onclick="searchTodos()">search</button>
+       </div>
         <div class="add">
           <input type="text" id="todo-input" placeholder="Enter your task..">
-          <button id="todobtn">ADD</button>
+            <button id="todobtn" onclick="addTodo()">Add</button>
+          
         </div>
-    
+        
         <div class="list">
         <div id="todo-list">
-            <label>Todo List: </label>
+    
         </div>
-        <p id="todo-counter">Total Todos: </p>
+        <p id="todo-counter">Total Tasks: 0</p>
         </div>
       </div>
     </header>
