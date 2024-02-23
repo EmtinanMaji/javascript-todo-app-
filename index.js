@@ -1,26 +1,13 @@
 const todoInput  = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 const todoCounter = document.getElementById('todo-counter');
-const searchInput = document.getElementById('search-input').value.toLowerCase();
 
 let todos = [];
-
-        //get
-        window.onload = () => {
-            const storedTodos = JSON.parse(localStorage.getItem('todos'));
-            if (storedTodos) {
-                todos = storedTodos;
-                displayList();
-            }
-        };
         
-        const displayList = () =>{
-
-            while (todoList.firstChild) {
-                todoList.removeChild(todoList.firstChild);
-            }
-
-            todos.forEach((todo, index) => {
+        const displayList = (searchedList=null) =>{
+            todoList.innerHTML = '';
+            const todosToRender = searchedList || todos;
+            todosToRender.forEach((todo, index) => {
                 const todoItem = document.createElement('div');
                 todoItem.classList.add('todo-item');
                 todoItem.textContent = index+1 +"-";
@@ -46,9 +33,10 @@ let todos = [];
                 todoItem.appendChild(editButton);
 
                 todoList.appendChild(todoItem);
-                todoCounter.textContent = `Total Tasks: ${todos.length}`;
+                
             });
         }
+
         //add
         const addTodo = () => {
             const todoValue  = todoInput.value.trim();
@@ -58,16 +46,20 @@ let todos = [];
             }else {
                 todos.push({ description: todoValue  });
                 saveTodosToLocalStorage();
+                updateTodoCounter()
                 displayList();
                 todoInput.value = '';
             }
         }
+
         //delete
         const deleteTodo = (index) => {
             todos.splice(index, 1);
+            updateTodoCounter()
             saveTodosToLocalStorage();
             displayList();
         }
+
         //edit
         const editTodo = (index) =>{
             const updatedText = prompt('Edit Todo:', todos[index].description);
@@ -76,13 +68,45 @@ let todos = [];
                 return;
             }else {
                 todos[index].description = updatedText.trim().toLowerCase();
-                localStorage.setItem('todos', JSON.stringify(todos));
+                saveTodosToLocalStorage();
                 displayList();
                 
             }
           }
 
+        //update-counter
+        function updateTodoCounter() {
+            todoCounter.textContent = `Total Tasks: ${todos.length}`;
+        }
+
         //save-set
         const saveTodosToLocalStorage = () => {
             localStorage.setItem('todos', JSON.stringify(todos));
         }
+
+        //load-get
+        function loadFromLocalStorage() {
+            const storedTodos = JSON.parse(localStorage.getItem('todos'));
+            if (storedTodos) {
+                todos = storedTodos;
+                displayList();
+            }
+        }
+        
+        //search-button
+        function searchTodos() {
+            const searchInput = document.getElementById('search-input').value.trim().toLowerCase();
+            if (searchInput  === '') {
+                alert('Please enter a value.');
+                return;
+            }else {
+                const searchedList = todos.filter(todo => todo.description.toLowerCase().includes(searchInput));
+                displayList(searchedList);
+            } 
+        }
+        
+        
+        loadFromLocalStorage();
+        displayList();
+        updateTodoCounter();
+        
